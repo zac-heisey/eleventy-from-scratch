@@ -16,14 +16,14 @@ module.exports = config => {
   // Require sort-by-display-order utility function
   const sortByDisplayOrder = require( './src/utils/sort-by-display-order.js' );
 
-  // Returns work items, sorted by display order
+  // Work Collection (returns work items, sorted by display order)
   config.addCollection( 'work', collection => {
 
     return sortByDisplayOrder( collection.getFilteredByGlob( './src/work/*.md' ) );
 
   });
 
-  // Returns work items, sorted by display order then filtered by featured
+  // Featured Work Collection (returns work items, sorted by display order then filtered by featured)
   config.addCollection( 'featuredWork', collection => {
 
     return sortByDisplayOrder( collection.getFilteredByGlob( './src/work/*.md' ) ).filter(
@@ -32,10 +32,19 @@ module.exports = config => {
 
   });
 
-  // Returns a collection of blog posts in reverse date order
+  // Blog Post Collection (returns a list of blog posts in reverse date order)
   config.addCollection( 'blog', collection => {
 
     return [ ...collection.getFilteredByGlob( './src/posts/*.md' ) ].reverse();
+
+  });
+
+  // People Collection (returns a list of people ordered by filename)]
+  config.addCollection( 'people', collection => {
+
+    return collection.getFilteredByGlob( './src/people/*.md' ).sort( ( a, b ) => {
+      return Number( a.fileSlug ) > Number( b.fileSlug ) ? 1 : -1;
+    });
 
   });
 
