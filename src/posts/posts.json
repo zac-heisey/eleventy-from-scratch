@@ -2,5 +2,5 @@
 
   "layout": "layouts/post.html",
   "permalink": "/blog/{{ title | slug }}/index.html"
-
+  
 }
