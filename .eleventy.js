@@ -53,6 +53,9 @@ module.exports = config => {
 
   });
 
+  // Tell 11ty to use .eleventyignore instead of .gitignore
+  config.setUseGitIgnore( false );
+
   return {
 
     markdownTemplateEngine: 'njk',
